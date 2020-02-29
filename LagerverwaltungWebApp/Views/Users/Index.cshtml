@@ -1,0 +1,68 @@
+﻿@model IEnumerable<LagerverwaltungLib.User>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Personal-Cockpit</h2>
+
+<p>
+    @Html.ActionLink("Neuen Mitarbeiter anlegen", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Vorname)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Personalnummer)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Lagerist)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Besteller)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Personal)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Systemadm)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+<tr>
+    <td>
+        @Html.DisplayFor(modelItem => item.Name)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Vorname)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Personalnummer)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Lagerist)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Besteller)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Personal)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Systemadm)
+    </td>
+    <td>
+        @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+        @Html.ActionLink("Details", "Details", new { id = item.Id })
+    </td>
+</tr>
+}
+
+</table>

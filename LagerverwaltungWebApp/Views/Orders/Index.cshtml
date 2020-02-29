@@ -1,0 +1,38 @@
+﻿@model IEnumerable<LagerverwaltungWebApp.Models.Order>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Bestellzuständigkeit-Cockpit</h2>
+
+<p>
+    
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Material.Materialnummer)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.User.Name)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Material.Materialnummer)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.User.Name)
+        </td>
+        <td>
+            @Html.ActionLink("Delete", "Delete", new { userId = item.User.Id, 
+            materialId = item.Material.Id })
+        </td>
+    </tr>
+}
+
+</table>

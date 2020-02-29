@@ -1,0 +1,41 @@
+﻿
+@{
+    ViewBag.Title = "Einkauf";
+}
+
+    <div class="jumbotron">
+        <h1>Warehouse-Management</h1>
+        <p>
+            Hallo Einkäufer!
+        </p>
+    </div>
+
+<div class="row">
+    <div class="col-md-4">
+        <h2>Lager</h2>
+        <p>
+
+        </p>
+        Wareneingang / Warenausgang buchen<br>
+        Lagerorte verwalten<br>
+    </div>
+    <div class="col-md-4">
+        <h2>Einkauf</h2>
+        <p>
+
+        <p>
+            @Html.ActionLink("Material anlegen", "Create", "MyMaterials")<br>
+            @Html.ActionLink("Meine Materialien", "Index", "MyMaterials")<br>
+            @Html.ActionLink("Meine Bestellliste", "Index", "Purchase")<br>
+            Bestellzuständigkeit löschen<br>
+</div>
+    <div class="col-md-4">
+        <h2>Personal</h2>
+        <p>
+
+        <p>
+            Mitarbeiter verwalten<br>
+    </div>
+</div>
+
+

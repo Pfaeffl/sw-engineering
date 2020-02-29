@@ -1,0 +1,245 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="LagerverwaltungModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2012" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityContainer Name="LagerverwaltungModelStoreContainer">
+    <EntitySet Name="Users" EntityType="LagerverwaltungModel.Store.Users" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Materials" EntityType="LagerverwaltungModel.Store.Materials" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Lagerorts" EntityType="LagerverwaltungModel.Store.Lagerorts" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="UserMaterial" EntityType="LagerverwaltungModel.Store.UserMaterial" store:Type="Tables" Schema="dbo" />
+    <AssociationSet Name="FK_UserMaterial_User" Association="LagerverwaltungModel.Store.FK_UserMaterial_User">
+      <End Role="User" EntitySet="Users" />
+      <End Role="UserMaterial" EntitySet="UserMaterial" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UserMaterial_Material" Association="LagerverwaltungModel.Store.FK_UserMaterial_Material">
+      <End Role="Material" EntitySet="Materials" />
+      <End Role="UserMaterial" EntitySet="UserMaterial" />
+    </AssociationSet>
+    <AssociationSet Name="MaterialLagerort" Association="LagerverwaltungModel.Store.MaterialLagerort">
+      <End Role="Material" EntitySet="Materials" />
+      <End Role="Lagerort" EntitySet="Lagerorts" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Users">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Vorname" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Personalnummer" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Lagerist" Type="bit" Nullable="false" />
+    <Property Name="Besteller" Type="bit" Nullable="false" />
+    <Property Name="Personal" Type="bit" Nullable="false" />
+    <Property Name="Systemadm" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Materials">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="LagerortId" Type="int" Nullable="false" />
+    <Property Name="Materialnummer" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Materialbezeichnung" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Standardpreis" Type="float" Nullable="false" />
+    <Property Name="Bestand" Type="int" Nullable="false" />
+    <Property Name="Mindestbestand" Type="int" Nullable="false" />
+    <Property Name="Bestellmenge" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Lagerorts">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="UserMaterial">
+    <Key>
+      <PropertyRef Name="Users_Id" />
+      <PropertyRef Name="Materials_Id" />
+    </Key>
+    <Property Name="Users_Id" Type="int" Nullable="false" />
+    <Property Name="Materials_Id" Type="int" Nullable="false" />
+  </EntityType>
+  <Association Name="MaterialLagerort">
+    <End Role="Material" Type="LagerverwaltungModel.Store.Materials" Multiplicity="*" />
+    <End Role="Lagerort" Type="LagerverwaltungModel.Store.Lagerorts" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="Lagerort">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Material">
+        <PropertyRef Name="LagerortId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UserMaterial_User">
+    <End Role="User" Type="LagerverwaltungModel.Store.Users" Multiplicity="1" />
+    <End Role="UserMaterial" Type="LagerverwaltungModel.Store.UserMaterial" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="UserMaterial">
+        <PropertyRef Name="Users_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UserMaterial_Material">
+    <End Role="UserMaterial" Type="LagerverwaltungModel.Store.UserMaterial" Multiplicity="*" />
+    <End Role="Material" Type="LagerverwaltungModel.Store.Materials" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="Material">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="UserMaterial">
+        <PropertyRef Name="Materials_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema xmlns="http://schemas.microsoft.com/ado/2009/11/edm" xmlns:cg="http://schemas.microsoft.com/ado/2006/04/codegeneration" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" Namespace="LagerverwaltungModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" annotation:UseStrongSpatialTypes="false">
+        <EntityContainer Name="LagerverwaltungModelContainer" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Users" EntityType="LagerverwaltungModel.User" />
+          <EntitySet Name="Materials" EntityType="LagerverwaltungModel.Material" />
+          <EntitySet Name="Lagerorts" EntityType="LagerverwaltungModel.Lagerort" />
+          <AssociationSet Name="UserMaterial" Association="LagerverwaltungModel.UserMaterial">
+            <End Role="User" EntitySet="Users" />
+            <End Role="Material" EntitySet="Materials" />
+          </AssociationSet>
+          <AssociationSet Name="MaterialLagerort" Association="LagerverwaltungModel.MaterialLagerort">
+            <End Role="Material" EntitySet="Materials" />
+            <End Role="Lagerort" EntitySet="Lagerorts" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="Materials" Relationship="LagerverwaltungModel.UserMaterial" FromRole="User" ToRole="Material" />
+          <Property Name="Name" Type="String" Nullable="false" />
+          <Property Name="Vorname" Type="String" Nullable="false" />
+          <Property Name="Personalnummer" Type="String" Nullable="false" />
+          <Property Name="Lagerist" Type="Boolean" Nullable="false" />
+          <Property Name="Besteller" Type="Boolean" Nullable="false" />
+          <Property Name="Personal" Type="Boolean" Nullable="false" />
+          <Property Name="Systemadm" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Material">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="Users" Relationship="LagerverwaltungModel.UserMaterial" FromRole="Material" ToRole="User" />
+          <NavigationProperty Name="Lagerort" Relationship="LagerverwaltungModel.MaterialLagerort" FromRole="Material" ToRole="Lagerort" />
+          <Property Name="LagerortId" Type="Int32" Nullable="false" />
+          <Property Name="Materialnummer" Type="String" Nullable="false" />
+          <Property Name="Materialbezeichnung" Type="String" Nullable="false" />
+          <Property Name="Standardpreis" Type="Double" Nullable="false" />
+          <Property Name="Bestand" Type="Int32" Nullable="false" />
+          <Property Name="Mindestbestand" Type="Int32" Nullable="false" />
+          <Property Name="Bestellmenge" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Lagerort">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="Materials" Relationship="LagerverwaltungModel.MaterialLagerort" FromRole="Lagerort" ToRole="Material" />
+          <Property Name="Name" Type="String" Nullable="false" />
+        </EntityType>
+        <Association Name="UserMaterial">
+          <End Type="LagerverwaltungModel.User" Role="User" Multiplicity="*" />
+          <End Type="LagerverwaltungModel.Material" Role="Material" Multiplicity="*" />
+        </Association>
+        <Association Name="MaterialLagerort">
+          <End Type="LagerverwaltungModel.Material" Role="Material" Multiplicity="*" />
+          <End Type="LagerverwaltungModel.Lagerort" Role="Lagerort" Multiplicity="1" />
+          <ReferentialConstraint>
+            <Principal Role="Lagerort">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Material">
+              <PropertyRef Name="LagerortId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+    <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="LagerverwaltungModelStoreContainer" CdmEntityContainer="LagerverwaltungModelContainer">
+    <EntitySetMapping Name="Users">
+      <EntityTypeMapping TypeName="IsTypeOf(LagerverwaltungModel.User)">
+        <MappingFragment StoreEntitySet="Users">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Vorname" ColumnName="Vorname" />
+          <ScalarProperty Name="Personalnummer" ColumnName="Personalnummer" />
+          <ScalarProperty Name="Lagerist" ColumnName="Lagerist" />
+          <ScalarProperty Name="Besteller" ColumnName="Besteller" />
+          <ScalarProperty Name="Personal" ColumnName="Personal" />
+          <ScalarProperty Name="Systemadm" ColumnName="Systemadm" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Materials">
+      <EntityTypeMapping TypeName="IsTypeOf(LagerverwaltungModel.Material)">
+        <MappingFragment StoreEntitySet="Materials">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="LagerortId" ColumnName="LagerortId" />
+          <ScalarProperty Name="Materialnummer" ColumnName="Materialnummer" />
+          <ScalarProperty Name="Materialbezeichnung" ColumnName="Materialbezeichnung" />
+          <ScalarProperty Name="Standardpreis" ColumnName="Standardpreis" />
+          <ScalarProperty Name="Bestand" ColumnName="Bestand" />
+          <ScalarProperty Name="Mindestbestand" ColumnName="Mindestbestand" />
+          <ScalarProperty Name="Bestellmenge" ColumnName="Bestellmenge" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Lagerorts">
+      <EntityTypeMapping TypeName="IsTypeOf(LagerverwaltungModel.Lagerort)">
+        <MappingFragment StoreEntitySet="Lagerorts">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <AssociationSetMapping Name="UserMaterial" TypeName="LagerverwaltungModel.UserMaterial" StoreEntitySet="UserMaterial">
+      <EndProperty Name="User">
+        <ScalarProperty Name="Id" ColumnName="Users_Id" />
+      </EndProperty>
+      <EndProperty Name="Material">
+        <ScalarProperty Name="Id" ColumnName="Materials_Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+  </EntityContainerMapping>
+</Mapping></edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <edmx:Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </edmx:Connection>
+    <edmx:Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="True" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+        <DesignerProperty Name="UseLegacyProvider" Value="False" />
+      </DesignerInfoPropertySet>
+    </edmx:Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

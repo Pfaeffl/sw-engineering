@@ -1,0 +1,68 @@
+﻿@model IEnumerable<LagerverwaltungLib.Material>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Mein Bestell-Cockpit</h2>
+
+<p>
+    
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Materialnummer)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Materialbezeichnung)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Standardpreis)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Bestand)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Mindestbestand)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Bestellmenge)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Lagerort.Name)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Materialnummer)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Materialbezeichnung)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Standardpreis)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Bestand)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Mindestbestand)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Bestellmenge)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Lagerort.Name)
+        </td>
+        <td>
+            @Html.ActionLink("Bestellen", "Bestellen", new { materialId=item.Id })
+
+        </td>
+    </tr>
+}
+
+</table>

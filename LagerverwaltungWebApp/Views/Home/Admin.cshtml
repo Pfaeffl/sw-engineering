@@ -1,0 +1,40 @@
+﻿
+@{
+    ViewBag.Title = "Admin";
+}
+
+    <div class="jumbotron">
+        <h1>Warehouse-Management</h1>
+        <p>
+        Hallo Systemadministrator!
+        </p>
+    </div>
+
+<div class="row">
+    <div class="col-md-4">
+        <h2>Lager</h2>
+        <p>
+
+        </p>
+        @Html.ActionLink("Wareneingang / Warenausgang buchen", "Index", "Lager")<br>
+        @Html.ActionLink("Lagerorte verwalten", "Index", "Lagerorts")<br>
+    </div>
+    <div class="col-md-4">
+        <h2>Einkauf</h2>
+        <p>
+
+        <p>
+            @Html.ActionLink("Material anlegen", "Create", "MyMaterials")<br>
+            @Html.ActionLink("Meine Materialien", "Index", "MyMaterials")<br>
+            @Html.ActionLink("Meine Bestellliste", "Index", "Purchase")<br>
+            @Html.ActionLink("Bestellzuständigkeit löschen", "Index", "Orders")<br>
+</div>
+    <div class="col-md-4">
+        <h2>Personal</h2>
+        <p>
+
+        <p>
+            @Html.ActionLink("Mitarbeiter verwalten", "Index", "Users")<br>
+    </div>
+</div>
+

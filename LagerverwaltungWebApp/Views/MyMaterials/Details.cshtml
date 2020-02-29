@@ -1,0 +1,73 @@
+﻿@model LagerverwaltungLib.Material
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Material anzeigen</h2>
+
+<div>
+    <h4></h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Materialnummer)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Materialnummer)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Materialbezeichnung)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Materialbezeichnung)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Standardpreis)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Standardpreis)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Bestand)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Bestand)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Mindestbestand)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Mindestbestand)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Bestellmenge)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Bestellmenge)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Lagerort.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Lagerort.Name)
+        </dd>
+
+    </dl>
+</div>
+<p>
+        @Html.ActionLink("Mein Material-Cockpit", "Index")
+</p>
